@@ -1,8 +1,8 @@
 import mlflow
 import random
 
-# Set the MLflow tracking URI
-mlflow.set_tracking_uri("http://ec2-54-91-181-71.compute-1.amazonaws.com:5000/")
+# Set the MLflow tracking URI to local offline mode
+mlflow.set_tracking_uri("mlruns")
 
 # Start an MLflow run
 with mlflow.start_run():
