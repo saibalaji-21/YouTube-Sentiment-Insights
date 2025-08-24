@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.10'
-        }
-    }
+    agent any
     environment {
         VENV_DIR = 'venv'
     }
@@ -13,9 +9,14 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Set up Python') {
+        stage('Install Python') {
             steps {
-                sh 'python -m venv $VENV_DIR'
+                sh 'apt-get update && apt-get install -y python3 python3-venv python3-pip'
+            }
+        }
+        stage('Set up Python venv') {
+            steps {
+                sh 'python3 -m venv $VENV_DIR'
                 sh '. $VENV_DIR/bin/activate; python -m pip install --upgrade pip'
             }
         }
