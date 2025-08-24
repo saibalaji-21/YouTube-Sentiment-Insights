@@ -9,6 +9,11 @@ pipeline {
                 checkout scm
             }
         }
+        stage('Clean venv') {
+            steps {
+                sh 'rm -rf $VENV_DIR'
+            }
+        }
         stage('Set up Python venv') {
             steps {
                 sh 'python3 -m venv $VENV_DIR'
