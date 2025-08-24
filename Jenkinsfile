@@ -9,11 +9,6 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Install Python') {
-            steps {
-                sh 'apt-get update && apt-get install -y python3 python3-venv python3-pip'
-            }
-        }
         stage('Set up Python venv') {
             steps {
                 sh 'python3 -m venv $VENV_DIR'
