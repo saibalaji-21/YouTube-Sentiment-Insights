@@ -4,7 +4,7 @@ pipeline {
     environment {
         VENV_DIR   = 'venv'
         // 🔁 CHANGE this to the output from `where python`
-        PYTHON_EXE = 'C:\\Users\\SAI DHRUVA\\AppData\\Local\\Programs\\Python\\Python313\\python.exe'
+        PYTHON_EXE = 'C:\\Users\\SAI DHRUVA\\AppData\\Local\\Programs\\Python\\Python310\\python.exe'
     }
 
     stages {
