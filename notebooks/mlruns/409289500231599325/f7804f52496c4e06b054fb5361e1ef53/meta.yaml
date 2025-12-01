@@ -1,0 +1,15 @@
+artifact_uri: file:C:/Users/SAI DHRUVA/Downloads/YouTube-Sentiment-Insights/notebooks/mlruns/409289500231599325/f7804f52496c4e06b054fb5361e1ef53/artifacts
+end_time: 1756033039002
+entry_point_name: ''
+experiment_id: '409289500231599325'
+lifecycle_stage: active
+run_id: f7804f52496c4e06b054fb5361e1ef53
+run_name: RandomForest_Baseline_TrainTestSplit
+run_uuid: f7804f52496c4e06b054fb5361e1ef53
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756032655659
+status: 3
+tags: []
+user_id: SAI DHRUVA

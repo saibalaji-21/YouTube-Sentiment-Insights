@@ -1,0 +1,14 @@
+artifact_uri: /content/mlruns/484599429572313026/9e67d7f928124131af46e126fecbb98d/artifacts
+end_time: 1756020515670
+entry_point_name: ''
+experiment_id: '484599429572313026'
+lifecycle_stage: active
+run_id: 9e67d7f928124131af46e126fecbb98d
+run_name: RandomForest_Baseline_TrainTestSplit
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756020434610
+status: 3
+tags: []
+user_id: root

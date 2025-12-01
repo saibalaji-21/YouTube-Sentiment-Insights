@@ -1,0 +1,14 @@
+artifact_uri: /content/mlruns/0/6f3aa6e9fa3c4c0d97ca7b75f33aa546/artifacts
+end_time: 1756020407170
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 6f3aa6e9fa3c4c0d97ca7b75f33aa546
+run_name: shivering-vole-461
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756020407138
+status: 3
+tags: []
+user_id: root
