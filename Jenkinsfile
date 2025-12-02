@@ -1,61 +1,58 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'python:3.11-slim'
+        }
+    }
 
     environment {
-        VENV_DIR   = 'venv'
-        // 🔁 CHANGE this to the output from `where python`
-        PYTHON_EXE = 'C:\\Users\\SAI DHRUVA\\AppData\\Local\\Programs\\Python\\Python310\\python.exe'
+        PYTHONUNBUFFERED = "1"
     }
 
     stages {
+
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
 
-        stage('Clean venv') {
+        stage('Install Dependencies') {
             steps {
-                bat """
-                IF EXIST %VENV_DIR% (
-                    rmdir /S /Q %VENV_DIR%
-                )
-                """
+                sh '''
+                    python -m pip install --upgrade pip
+                    pip install -r requirements.txt
+                '''
             }
         }
 
-        stage('Set up Python venv') {
+        stage('Run Python Scripts in src/') {
             steps {
-                // create venv and upgrade pip
-                bat "\"%PYTHON_EXE%\" -m venv %VENV_DIR%"
-                bat "%VENV_DIR%\\Scripts\\python -m pip install --upgrade pip"
+                sh '''
+                    echo "Running Python files from src/ ..."
+
+                    # If you want to run ALL python files in src:
+                    for f in src/*.py; do
+                        echo "Running $f"
+                        python "$f"
+                    done
+                '''
             }
         }
 
-        stage('Install dependencies') {
+        stage('Archive Model Artifacts') {
             steps {
-                bat "%VENV_DIR%\\Scripts\\pip install -r requirements.txt"
-            }
-        }
-
-        stage('Run Tests') {
-            steps {
-                // generate junit xml for Jenkins
-                bat "%VENV_DIR%\\Scripts\\pytest scripts/ --junitxml=test-results.xml"
+                archiveArtifacts artifacts: '**/*.pkl', allowEmptyArchive: false, fingerprint: true
             }
         }
     }
 
     post {
-        always {
-            // Only publish JUnit report if it exists (to avoid that error)
-            script {
-                if (fileExists('test-results.xml')) {
-                    junit 'test-results.xml'
-                } else {
-                    echo 'No test-results.xml found, skipping JUnit step.'
-                }
-            }
+        success {
+            echo "Pipeline executed successfully. Models archived."
+        }
+        failure {
+            echo "Pipeline failed. Check logs."
         }
     }
 }
